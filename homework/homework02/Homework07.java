@@ -8,7 +8,7 @@ public class Homework07 {
 			for(int i=1; i<=9; i++) {
 				for(int j=0; j<3; j++) {
 					if(dan+j<10) {
-						System.out.printf("%d * %d = %2d  ",dan+j,i,dan*i);
+						System.out.printf("%d * %d = %2d  ",dan+j,i,(dan+j)*i);
 					}
 				}
 				System.out.println();

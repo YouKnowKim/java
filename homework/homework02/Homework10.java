@@ -4,9 +4,9 @@ public class Homework10 {
 
 	public static void main(String[] args) {
 
-		int properValue = 10;
+		int properValue = 9;
 
-		for (int i = 1; i < properValue; i++) {
+		for (int i = 1; i <= properValue; i++) {
 
 			int originalI = i;
 
@@ -19,7 +19,7 @@ public class Homework10 {
 			}
 
 			for (int k = properValue - 2 * i; k > 0; k--) {
-				System.out.print(" ");
+				System.out.print("-");
 			}
 
 			for (int j = 1; j <= i; j++) {
