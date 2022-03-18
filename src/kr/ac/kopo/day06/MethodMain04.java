@@ -19,5 +19,7 @@ public class MethodMain04 {
 		int endDan = gu.getDan();
 		
 		System.out.println(startDan + " : " + endDan);
+		
+		gu.print(4,5);
 	}
 }

@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Gugudan {
 	
+	int dan;
+	
 	int getDan(){
 		Scanner sc = new Scanner(System.in);
 		int dan = sc.nextInt();
@@ -24,6 +26,12 @@ public class Gugudan {
 			for(int i=1;i<=9;i++) {
 				System.out.printf("%d * %d = %d\n", dan, i, dan*i);
 			}
+		}
+	}
+	
+	void print(int start, int end) {
+		for(int dan = start; dan<=end; dan++) {
+			print(dan);
 		}
 	}
 }
