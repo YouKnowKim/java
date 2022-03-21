@@ -7,13 +7,11 @@ public class Member {
 	String bloodType;
 
 	Member() {
-		this("알수없음", -1, "알수없음");
+		this("알수없음");
 	}
 
 	Member(String name) {
-		this.name = name;
-		this.age = -1;
-		this.bloodType = "알수없음";
+		this(name, -1);
 	}
 
 	Member(String name, int age) {
