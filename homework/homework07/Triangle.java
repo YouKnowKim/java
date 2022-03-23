@@ -2,7 +2,7 @@ package homework07;
 
 public class Triangle extends Figure{
 
-	Triangle(double element1, double element2){
+	public Triangle(double element1, double element2){
 		super(element1, element2);
 	}
 	

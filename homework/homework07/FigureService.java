@@ -1,6 +1,6 @@
 package homework07;
 
-public interface AreaService {
+public interface FigureService {
 
 	public abstract double getArea();
 	
