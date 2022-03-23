@@ -19,7 +19,7 @@ public class MyCalendar {
 	
 	public static void myMonth(int year, int month) {
 		System.out.printf("<%d년 %d월>",year, month);
-		System.out.println("일  월  화  수  목  금  토");
+		System.out.println("일\t월\t화\t수\t목\t금\t토");
 		
 	}
 }
