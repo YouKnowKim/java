@@ -11,7 +11,7 @@ public class Member implements Serializable{
 	private String password;
 	private String name;
 	private int memberState; // 0 : 기본, 1:대여 정지, 2 : 탈퇴 상태
-	private List<Book> rentList;
+	private List<Book> rentList; // 책 번호만 저장
 	
 	public Member() {
 		
