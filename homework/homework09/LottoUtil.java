@@ -78,7 +78,7 @@ public class LottoUtil {
 		arr[j] = temp;
 	}
 
-	// Set
+	// HashSet
 	private int[] getNumbers4() {
 		int[] arr = new int[6];
 		Set<Integer> set = new HashSet<Integer>();
