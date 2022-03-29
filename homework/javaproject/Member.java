@@ -17,12 +17,23 @@ public class Member implements Serializable{
 		
 	}
 	
+	public Member(int userNumber) {
+		this.userNumber = userNumber;
+	}
+	
+	public Member(int userNumber, String username, String password) {
+		this.userNumber = userNumber;
+		this.username = username;
+		this.password = password;
+	}
+	
 	public Member(String username, String password, String name) {
 		super();
 		this.userNumber = ++Member.memberNumbering;
 		this.username = username;
 		this.password = password;
 		this.name = name;
+		this.memberState = 0;
 	}
 	
 	@Override

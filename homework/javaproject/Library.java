@@ -1,24 +1,20 @@
 package javaproject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Library implements Serializable{
 
-	private static List<Book> bookList;
-	private static List<Member> memberList;
+	public static List<Book> bookList = new ArrayList<Book>();
+	public static List<Member> memberList = new ArrayList<Member>();
 	
-	public static List<Book> getBookList() {
-		return bookList;
-	}
-	public static void setBookList(List<Book> bookList) {
-		Library.bookList = bookList;
-	}
-	public static List<Member> getMemberList() {
-		return memberList;
-	}
-	public static void setMemberList(List<Member> memberList) {
-		Library.memberList = memberList;
+	// 최고 권한자 생성
+	static {
+		if(Library.memberList.isEmpty()) {
+			Member admin = new Member(Admin.getUserNumber(), Admin.getUsername(), Admin.getPassword());
+			Library.memberList.add(0, admin);
+		}
 	}
 	
 	

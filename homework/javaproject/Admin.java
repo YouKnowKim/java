@@ -2,10 +2,16 @@ package javaproject;
 
 public class Admin {
 
+	private static int userNumber = 0;
 	private static String username = "root";
 	private static String password = "root";
 	
-	
+	public static int getUserNumber() {
+		return userNumber;
+	}
+	public static void setUserNumber(int userNumber) {
+		Admin.userNumber = userNumber;
+	}
 	public static String getUsername() {
 		return username;
 	}
