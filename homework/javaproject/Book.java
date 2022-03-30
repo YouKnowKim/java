@@ -27,7 +27,7 @@ public class Book implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Book [bookNo=" + bookNo + ", bookName=" + bookName + ", rentMember=" + rentMember + ", rentDay="
+		return "Book [bookNo=" + bookNo + ", bookName=" + bookName + ", rentMember=" + ", rentDay="
 				+ rentDay + ", returnDay=" + returnDay + ", overdueCheck=" + overdueCheck + "]";
 	}
 	public static int getBookNumbering() {

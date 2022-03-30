@@ -55,14 +55,14 @@ public class AdminService {
 					int year = rentDay.get(Calendar.YEAR);
 					int month = rentDay.get(Calendar.MONTH) + 1;
 					int day = rentDay.get(Calendar.DAY_OF_MONTH);
-					System.out.printf("%d년 %d월 %d일", year, month, day);
+					System.out.printf("%d년 %d월 %d일\t", year, month, day);
 				}
 				
 				if(book.getReturnDay() == null) {
 					System.out.printf("없음\t");
 					System.out.printf("없음");
 				} else {
-					returnDay = book.getRentDay();
+					returnDay = book.getReturnDay();
 					int year = returnDay.get(Calendar.YEAR);
 					int month = returnDay.get(Calendar.MONTH) + 1;
 					int day = returnDay.get(Calendar.DAY_OF_MONTH);
@@ -73,7 +73,7 @@ public class AdminService {
 					int nowMonth = now.get(Calendar.MONTH) + 1;
 					int nowDay = now.get(Calendar.DAY_OF_MONTH); 
 					int totalDay = (int)((returnDay.getTimeInMillis() - now.getTimeInMillis())/1000/60/60/24);
-					if(totalDay >= 1) {
+					if(totalDay*(-1) >= 1) {
 						System.out.printf("%d일 연체", totalDay);
 					} else {
 						System.out.print("없음");

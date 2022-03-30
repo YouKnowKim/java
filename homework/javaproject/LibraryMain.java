@@ -7,12 +7,15 @@ public class LibraryMain {
 		MemberService memberService = MemberService.getInstance();
 		AdminService adminService = AdminService.getInstance();
 		
+		adminService.registerBook();
+		adminService.registerBook();
+		
 		memberService.signUp();
-		memberService.signUp();
-		memberService.signUp();
-
-		adminService.selectAllMembers();
-		adminService.selectMembers();
+		memberService.logIn();
+		memberService.bookRental();
+		memberService.bookRental();
+		memberService.myRentalBooks();
+		adminService.selectAllBooks();
 		
 	}
 
