@@ -335,7 +335,7 @@ public class MemberService {
 		
 	}
 	
-	// 대여한 책 리스트
+	// 대여한 책 리스트 (책 리스트 번호로 Library에 있는 책 정보를 가져와서 보여주어야함 어쨋든 수정 필요)
 	public void myRentalBooks() {
 		Member tempMember = new Member();
 		
