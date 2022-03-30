@@ -32,7 +32,7 @@ public class MemberService {
 			username = scanner.nextLine();
 
 			for (Member member : Library.memberList) {
-				if (member.getName().equals(username)) {
+				if (member.getUsername().equals(username)) {
 					System.out.println("중복된 아이디 입니다. 다른 아이디 입력 필요");
 					break;
 				}

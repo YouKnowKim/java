@@ -147,7 +147,7 @@ public class AdminService {
 				System.out.println();
 			}
 		} else {
-			System.out.println("책이 없습니다! 등록해주세요");
+			System.out.println("검색된 책이 없습니다!");
 		}
 	}
 	
@@ -183,7 +183,7 @@ public class AdminService {
 		
 	}
 	
-	//등록된 책 
+	//등록된 책 제거
 	public void removeBook() {
 		
 		boolean check = true;
@@ -204,6 +204,82 @@ public class AdminService {
 			}
 		}
 	}
+	
+	// 모든 회원 리스트
+	public void selectAllMembers() {
+		if(Library.memberList.size()<=1) {
+			System.out.println("회원이 없습니다!");
+		} else {
+			System.out.println("번호\t아이디\t비밀번호\t이름\t회원상태");
+			for(Member member : Library.memberList) {
+				if(!member.getUsername().equals("root")) {				
+					System.out.printf("%d\t%s\t%s\t%s\t%d\n",member.getUserNumber(), member.getUsername(), member.getPassword(), member.getName(), member.getMemberState());
+				}
+			}
+		}
+	}
+	
+	// username을 통한 회원 리스트
+	public void selectMembers() {
+		
+		List<Member> searchMember = new ArrayList<Member>();
+		
+		System.out.print("검색할 회원 아이디를 입력해주세요. ");
+		String tempUsername = scanner.nextLine();
+		
+		for(Member member : Library.memberList) {
+			if(member.getUsername().indexOf(tempUsername) != -1) {
+				searchMember.add(member);
+			}
+		}
+		
+		if(searchMember.size() == 0) {
+			System.out.println("검색 회원이 없습니다.");
+		} else {
+			System.out.println("번호\t아이디\t비밀번호\t이름\t회원상태");
+			for(Member member : searchMember) {
+				if(!member.getUsername().equals("root")) {				
+					System.out.printf("%d\t%s\t%s\t%s\t%d\n",member.getUserNumber(), member.getUsername(), member.getPassword(), member.getName(), member.getMemberState());
+				}
+			}
+		}
+		
+	}
+	
+	// 회원 상태 변경
+	public void updateMemberState() {
+		
+		boolean check = true;
+		int memberNo = -1;
+		int memberState = -1;
+		Member tempMember = new Member();
+		int tempNo = -1;
+
+		System.out.print("회원 번호를 입력해주세요. ");
+		while(check) {
+			memberNo = Integer.parseInt(scanner.nextLine());
+			
+			for(int i=0; i<Library.memberList.size(); i++) {
+				if(Library.memberList.get(i).getUserNumber() == memberNo) {
+					tempMember = Library.memberList.get(i);
+					tempNo = i;
+					check = false;
+				}
+			}
+			
+			if(check) {
+				System.out.println("존재하는 회원 번호를 입력하세요.");
+			}
+			
+		}
+		
+		System.out.print("1.대여가능\t2.대여금지\t3.탈퇴처리");
+		memberState = Integer.parseInt(scanner.nextLine()) - 1;
+		tempMember.setMemberState(memberState);
+		
+		Library.memberList.set(tempNo, tempMember);
+	}
+	
 	
 }
 
