@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Member implements Serializable{
 
+	//파일 입출력시 문제
 	private static int memberNumbering = 0;
 	private int userNumber;	
 	private String username;

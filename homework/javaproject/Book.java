@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 public class Book implements Serializable{
 
+	// 파일 입출력시 문제
 	private static int bookNumbering = 0;
 	
 	private int bookNo;

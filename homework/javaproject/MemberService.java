@@ -449,7 +449,45 @@ public class MemberService {
 	
 	//책 연장하기 (1번만)
 	public void extendDeadline() {
+		boolean check = true;
+		int extendBookNo = -1;
+		int tempNo = -1;
+		int tempBookNo = -1;
+		Book tempBook = new Book();
+		Member tempMember = new Member();
 		
+		System.out.print("연장할 책 번호를 입력해주세요. ");
+		extendBookNo = Integer.parseInt(scanner.nextLine());
+		
+		for(int i=0; i<Library.memberList.size(); i++) {
+			if(Library.memberList.get(i).getUserNumber() == LibrarySession.user.getUserNumber()) {
+				tempMember = Library.memberList.get(i);
+				tempNo = i;
+			}
+		}
+		
+		for(Book book : tempMember.getRentList()) {
+			if(book.getBookNo() == extendBookNo) {
+				check = false;
+			}
+		}
+		
+		if(check) {
+			System.out.println("대여 목록에 해당하는 책 번호가 없습니다. ");
+			return;
+		}
+		
+		for(int i=0; i<Library.bookList.size(); i++) {
+			if(Library.bookList.get(i).getBookNo() == extendBookNo) {
+				tempBook = Library.bookList.get(i);
+				Calendar tempCalendar = Calendar.getInstance();
+				Calendar returnDay = tempBook.getReturnDay();
+				tempCalendar.setTimeInMillis(returnDay.getTimeInMillis() + 7*24*60*60*1000);
+				tempBook.setReturnDay(tempCalendar);
+				Library.bookList.set(i, tempBook);
+			}
+		}
+		System.out.println("1주일 연장되었습니다.");
 	}
 }
 
