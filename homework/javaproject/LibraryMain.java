@@ -15,7 +15,6 @@ public class LibraryMain {
 		memberService.bookRental();
 		memberService.bookRental();
 		memberService.myRentalBooks();
-		adminService.selectAllBooks();
 		
 	}
 

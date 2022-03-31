@@ -194,10 +194,12 @@ public class MemberService {
 					int nowMonth = now.get(Calendar.MONTH) + 1;
 					int nowDay = now.get(Calendar.DAY_OF_MONTH);
 					int totalDay = (int) ((returnDay.getTimeInMillis() - now.getTimeInMillis()) / 1000 / 60 / 60 / 24);
-					if (totalDay >= 1) {
+					if (totalDay*(-1) >= 1) {
 						System.out.printf("%d일 연체", totalDay);
+						System.out.println();
 					} else {
 						System.out.print("없음");
+						System.out.println();
 					}
 				}
 				System.out.println();
@@ -235,7 +237,7 @@ public class MemberService {
 					int year = rentDay.get(Calendar.YEAR);
 					int month = rentDay.get(Calendar.MONTH) + 1;
 					int day = rentDay.get(Calendar.DAY_OF_MONTH);
-					System.out.printf("%d년 %d월 %d일", year, month, day);
+					System.out.printf("%d년 %d월 %d일\t", year, month, day);
 				}
 
 				if (book.getReturnDay() == null) {
@@ -335,9 +337,10 @@ public class MemberService {
 		
 	}
 	
-	// 대여한 책 리스트 (책 리스트 번호로 Library에 있는 책 정보를 가져와서 보여주어야함 어쨋든 수정 필요)
+	// 대여한 책 리스트
 	public void myRentalBooks() {
 		Member tempMember = new Member();
+		List<Book> tempBookList = new ArrayList<Book>();
 		
 		for(Member member : Library.memberList) {
 			if(member.getUserNumber() == LibrarySession.user.getUserNumber()) {
@@ -349,14 +352,98 @@ public class MemberService {
 			System.out.println("대여한 책이 없습니다");
 			return;
 		} else {
-			for(Book book : tempMember.getRentList()) {
-				System.out.println(book.toString());
+			System.out.println("번호\t제목\t대여한날짜\t반납예정일\t연체확인");
+			for(Book book : Library.bookList) {
+				for(Book mybook : tempMember.getRentList()) {
+					if(mybook.getBookNo() == book.getBookNo()) {
+						tempBookList.add(book);
+					}
+				}
+			}
+			for(Book book : tempBookList) {
+				System.out.printf("%d\t%s\t",book.getBookNo(),book.getBookName());
+				
+				Calendar rentDay = book.getRentDay();
+				int year = rentDay.get(Calendar.YEAR);
+				int month = rentDay.get(Calendar.MONTH) + 1;
+				int day = rentDay.get(Calendar.DAY_OF_MONTH);
+				System.out.printf("%d년 %d월 %d일\t", year, month, day);
+				
+				Calendar returnDay = book.getReturnDay();
+				int rYear = returnDay.get(Calendar.YEAR);
+				int rMonth = returnDay.get(Calendar.MONTH) + 1;
+				int rDay = returnDay.get(Calendar.DAY_OF_MONTH);
+				System.out.printf("%d년 %d월 %d일\t", rYear, rMonth, rDay);
+				
+				Calendar now = Calendar.getInstance();
+				int nowYear = now.get(Calendar.YEAR);
+				int nowMonth = now.get(Calendar.MONTH) + 1;
+				int nowDay = now.get(Calendar.DAY_OF_MONTH);
+				int totalDay = (int) ((returnDay.getTimeInMillis() - now.getTimeInMillis()) / 1000 / 60 / 60 / 24);
+				if (totalDay*(-1) >= 1) {
+					System.out.printf("%d일 연체", totalDay);
+					System.out.println();
+				} else {
+					System.out.printf("없음");
+					System.out.println();
+				}
 			}
 		}
 	}
 	
-	//책 반납하기
+	//책 반납하기 (Library.bookList, Library.memberList 정보수정)
 	public void returnMybook() {
+		boolean check = true;
+		int returnBookNo = -1;
+		int tempNo = -1;
+		List<Book> myRentalBooks = new ArrayList<Book>();
+		Member tempMember = new Member();
+		
+		while(check) {
+			System.out.print("반납할 책 번호를 입력해주세요. ");
+			returnBookNo = Integer.parseInt(scanner.nextLine());
+			
+			for(int i=0; i<Library.memberList.size(); i++) {
+				if(Library.memberList.get(i).getUserNumber() == LibrarySession.user.getUserNumber()) {
+					tempMember = Library.memberList.get(i);
+					tempNo = i;
+				}
+			}
+			
+			for(Book book : tempMember.getRentList()) {
+				if(book.getBookNo() == returnBookNo) {
+					check = false;
+				}
+			}
+			if(check) {
+				System.out.println("대여 목록에 해당하는 책 번호가 없습니다. ");
+				return;
+			} else {
+				myRentalBooks = tempMember.getRentList();
+				for(int i=0; i<myRentalBooks.size(); i++) {
+					if(myRentalBooks.get(i).getBookNo() == returnBookNo) {
+						myRentalBooks.remove(i);
+						tempMember.setRentList(myRentalBooks);
+						Library.memberList.set(tempNo, tempMember);
+					}
+				}
+				
+				int tempBookNo = -1;
+				Book tempBook = new Book();
+				for(int i=0; i<Library.bookList.size(); i++) {
+					if(Library.bookList.get(i).getBookNo() == returnBookNo) {
+						tempBook = Library.bookList.get(i);
+						tempBook.setRentDay(null);
+						tempBook.setRentMember(null);
+						tempBook.setReturnDay(null);
+						Library.bookList.set(i, tempBook);
+					}
+				}
+				System.out.println("책이 반납되었습니다.");
+				check=false;
+			}
+			
+		}
 		
 	}
 	

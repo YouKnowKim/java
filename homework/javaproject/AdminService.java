@@ -140,8 +140,10 @@ public class AdminService {
 					int totalDay = (int)((returnDay.getTimeInMillis() - now.getTimeInMillis())/1000/60/60/24);
 					if(totalDay >= 1) {
 						System.out.printf("%d일 연체", totalDay);
+						System.out.println();
 					} else {
 						System.out.print("없음");
+						System.out.println();
 					}
 				}
 				System.out.println();
