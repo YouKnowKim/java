@@ -348,7 +348,7 @@ public class MemberService {
 			}
 		}
 		
-		if(tempMember.getRentList() == null) {
+		if(tempMember.getRentList() == null || tempMember.getRentList().size()==0) {
 			System.out.println("대여한 책이 없습니다");
 			return;
 		} else {
@@ -480,6 +480,10 @@ public class MemberService {
 		for(int i=0; i<Library.bookList.size(); i++) {
 			if(Library.bookList.get(i).getBookNo() == extendBookNo) {
 				tempBook = Library.bookList.get(i);
+				if(tempBook.getReturnDay().getTimeInMillis()-tempBook.getRentDay().getTimeInMillis() > 10*24*60*60*1000) {
+					System.out.println("이미 연장된 책입니다.");
+					return;
+				}
 				Calendar tempCalendar = Calendar.getInstance();
 				Calendar returnDay = tempBook.getReturnDay();
 				tempCalendar.setTimeInMillis(returnDay.getTimeInMillis() + 7*24*60*60*1000);

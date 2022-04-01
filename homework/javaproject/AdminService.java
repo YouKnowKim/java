@@ -196,8 +196,14 @@ public class AdminService {
 			deleteBookNo = Integer.parseInt(scanner.nextLine());
 			for(int i=0; i<Library.bookList.size(); i++) {
 				if(Library.bookList.get(i).getBookNo() == deleteBookNo) {
-					Library.bookList.remove(i);
-					check = false;
+					if(Library.bookList.get(i).getRentMember() ==null) {
+						Library.bookList.remove(i);
+						check = false;
+					} else {
+						System.out.println("대여중인 책입니다. 제거 불가");
+						return;
+					}
+					
 				}
 			}
 			
@@ -212,7 +218,7 @@ public class AdminService {
 		if(Library.memberList.size()<=1) {
 			System.out.println("회원이 없습니다!");
 		} else {
-			System.out.println("번호\t아이디\t비밀번호\t이름\t회원상태");
+			System.out.println("번호\t아이디\t비밀번호\t이름\t회원상태(0:대여가능 1:대여금지 2:탈퇴상태)");
 			for(Member member : Library.memberList) {
 				if(!member.getUsername().equals("root")) {				
 					System.out.printf("%d\t%s\t%s\t%s\t%d\n",member.getUserNumber(), member.getUsername(), member.getPassword(), member.getName(), member.getMemberState());
@@ -238,7 +244,7 @@ public class AdminService {
 		if(searchMember.size() == 0) {
 			System.out.println("검색 회원이 없습니다.");
 		} else {
-			System.out.println("번호\t아이디\t비밀번호\t이름\t회원상태");
+			System.out.println("번호\t아이디\t비밀번호\t이름\t회원상태(0:대여가능 1:대여금지 2:탈퇴상태)");
 			for(Member member : searchMember) {
 				if(!member.getUsername().equals("root")) {				
 					System.out.printf("%d\t%s\t%s\t%s\t%d\n",member.getUserNumber(), member.getUsername(), member.getPassword(), member.getName(), member.getMemberState());

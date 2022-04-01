@@ -17,5 +17,21 @@ public class Library implements Serializable{
 		}
 	}
 	
+	//초기화
+	public static void listInitialize() {
+		if(Library.memberList.size() != 0 && Library.memberList != null) {
+			int memListIndex = Library.memberList.size() - 1; 
+			
+			Member.setMemberNumbering(Library.memberList.get(memListIndex).getUserNumber());
+		}
+		
+		if(Library.bookList.size() != 0 && Library.bookList != null) {
+			int bookListIndex = Library.bookList.size() - 1;
+			
+			Book.setBookNumbering(Library.bookList.get(bookListIndex).getBookNo());
+		}
+		
+	}
+	
 	
 }
