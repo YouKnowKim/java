@@ -88,8 +88,10 @@ public class MemberService {
 				System.out.println("탈퇴한 회원입니다.");
 				return;
 			}
+
 			if (check) {
 				System.out.println("존재하지 않는 아이디 입니다.");
+				return;
 			}
 		}
 
@@ -102,6 +104,7 @@ public class MemberService {
 				check = false;
 			} else {
 				System.out.println("비밀번호가 틀렸습니다.");
+				return;
 			}
 		}
 	}
