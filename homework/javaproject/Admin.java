@@ -2,6 +2,7 @@ package javaproject;
 
 public class Admin {
 
+	// 관리자 계정
 	private static int userNumber = 0;
 	private static String username = "root";
 	private static String password = "root";

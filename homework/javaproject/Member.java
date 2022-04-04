@@ -5,8 +5,9 @@ import java.util.List;
 
 public class Member implements Serializable{
 
-	//파일 입출력시 문제
+	// 고유번호를 매기기 위한 정보
 	private static int memberNumbering = 0;
+	
 	private int userNumber;	
 	private String username;
 	private String password;

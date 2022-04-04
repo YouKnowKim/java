@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class MemberService {
 
+	// singleton
 	private static MemberService instance = new MemberService();
 
 	public static MemberService getInstance() {

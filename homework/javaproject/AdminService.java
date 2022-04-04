@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class AdminService {
 	
+	// singleton 
 	private static AdminService instance = new AdminService();
 	
 	public static AdminService getInstance() {

@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class Library implements Serializable{
 
+	// 이 두개의 리스트에 정보 저장
 	public static List<Book> bookList = new ArrayList<Book>();
 	public static List<Member> memberList = new ArrayList<Member>();
 	
@@ -24,7 +25,7 @@ public class Library implements Serializable{
 		}
 	}
 	
-	//초기화
+	//member, book numbering 초기화
 	public static void listInitialize() {
 		if(Library.memberList.size() != 0 && Library.memberList != null) {
 			int memListIndex = Library.memberList.size() - 1; 
