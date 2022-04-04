@@ -31,7 +31,7 @@ public class MemberService {
 		String name = "";
 
 		while (check) {
-			System.out.print("(이메일주소)아이디 입력 : ");
+			System.out.print("아이디 입력 : ");
 			username = scanner.nextLine();
 
 			for (Member member : Library.memberList) {
@@ -186,7 +186,7 @@ public class MemberService {
 					System.out.printf("없음\t");
 					System.out.printf("없음");
 				} else {
-					returnDay = book.getRentDay();
+					returnDay = book.getReturnDay();
 					int year = returnDay.get(Calendar.YEAR);
 					int month = returnDay.get(Calendar.MONTH) + 1;
 					int day = returnDay.get(Calendar.DAY_OF_MONTH);

@@ -196,12 +196,12 @@ public class AdminService {
 			deleteBookNo = Integer.parseInt(scanner.nextLine());
 			for(int i=0; i<Library.bookList.size(); i++) {
 				if(Library.bookList.get(i).getBookNo() == deleteBookNo) {
-					if(Library.bookList.get(i).getRentMember() ==null) {
-						Library.bookList.remove(i);
-						check = false;
-					} else {
+					if(Library.bookList.get(i).getRentMember() !=null) {
 						System.out.println("대여중인 책입니다. 제거 불가");
 						return;
+					} else {
+						Library.bookList.remove(i);
+						check = false;
 					}
 					
 				}
@@ -286,6 +286,7 @@ public class AdminService {
 		tempMember.setMemberState(memberState);
 		
 		Library.memberList.set(tempNo, tempMember);
+		System.out.println("회원 상태 변경 완료");
 	}
 	
 	
