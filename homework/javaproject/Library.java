@@ -48,7 +48,7 @@ public class Library implements Serializable{
 			
 			try {
 				
-				File f = new File("C:/library.txt");
+				File f = new File("C:/test/library.txt");
 				if(f.exists()) {
 					fis = new FileInputStream(f);
 					ois = new ObjectInputStream(fis);
@@ -92,8 +92,20 @@ public class Library implements Serializable{
 			FileOutputStream fos = null;
 			ObjectOutputStream oos = null;
 			
+			String path = "C:/test";
+			File dir = new File(path);
+			
+			if(!dir.exists()) {
+				try {
+					dir.mkdir();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
 			try {
-				fos = new FileOutputStream("C:/library.txt");
+				
+				fos = new FileOutputStream("C:/test/library.txt");
 				oos = new ObjectOutputStream(fos);
 				
 				Map<String, Object> data = new HashMap<String, Object>();
