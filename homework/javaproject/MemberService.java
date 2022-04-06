@@ -120,7 +120,7 @@ public class MemberService {
 	public void unregister() {
 		Member tempMember;
 		for (int i = 0; i < Library.memberList.size(); i++) {
-			if (LibrarySession.user.getUserNumber() == Library.memberList.get(i).getUserNumber()) {
+			if (LibrarySession.user != null && LibrarySession.user.getUserNumber() == Library.memberList.get(i).getUserNumber()) {
 				tempMember = Library.memberList.get(i);
 				tempMember.setMemberState(2);
 				Library.memberList.set(i, tempMember);
