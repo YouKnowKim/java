@@ -1,4 +1,4 @@
-package day01;
+package 분해합;
 
 import java.util.Scanner;
 
