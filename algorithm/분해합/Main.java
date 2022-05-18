@@ -16,7 +16,20 @@ public class Main {
 class Solution {
 	int solution(int input) {
 		int answer=0;
-		// TO DO:
+		
+		for(int a=1; a<input; a++) {
+			int eachSum = 0;
+			int temp1A = a;
+			int temp2A = a;
+			while(temp1A>0) {
+				eachSum += temp1A%10;
+				temp1A/=10;
+			}
+			if((temp2A+eachSum) == input) {
+				answer = temp2A;
+				break;
+			}
+		}
 		
 		return answer;
 	}
